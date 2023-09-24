@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fqf.warehouse.mapper.ProductTypeMapper">
+    <select id="findAllProductType" resultType="com.fqf.warehouse.entity.ProductType">
+        select * from product_type
+    </select>
+
+    <select id="findTypeByCode" resultType="com.fqf.warehouse.entity.ProductType">
+        select * from product_type where type_code = #{typeCode}
+    </select>
+
+    <insert id="insertProductType">
+        insert into product_type values (null,#{parentId},#{typeCode},#{typeCode},#{typeDesc})
+    </insert>
+
+    <delete id="deleteProductType">
+        delete from product_type where type_id = #{typeId} or parent_id = #{typeId}
+    </delete>
+
+    <update id="updateProductType">
+        update product_type set
+        type_name = #{typeName},type_desc = #{typeDesc}
+        where type_id = #{typeId}
+    </update>
+</mapper>

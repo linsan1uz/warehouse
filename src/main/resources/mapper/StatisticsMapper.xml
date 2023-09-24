@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fqf.warehouse.mapper.StatisticsMapper">
+
+    <select id="statisticsStoreInvent" resultType="com.fqf.warehouse.entity.Statistics">
+        select t1.store_id, t2.store_name,
+               ifnull(sum(t1.product_invent),0) totalInvent
+        from product t1, store t2
+        where t1.store_id = t2.store_id
+        group by t1.store_id, t2.store_name
+    </select>
+</mapper>
